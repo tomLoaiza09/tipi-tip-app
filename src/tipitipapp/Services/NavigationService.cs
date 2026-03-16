@@ -18,6 +18,10 @@ namespace tipitipapp.Services
         {
             await Shell.Current.GoToAsync("//MainPage");
         }
+        public async Task GoToManualEntry()
+        {
+            await Shell.Current.GoToAsync("//ManualEntry");
+        }
 
         public async Task GoBackAsync()
         {

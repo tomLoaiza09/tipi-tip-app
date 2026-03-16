@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:tipitipapp.ViewModels"
+             xmlns:views="clr-namespace:tipitipapp.Views"
+             x:Class="tipitipapp.Views,ManualData"
+             Title="Payment">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Validation Summary -->
+            <Label x:Name="ValidationSummary" 
+                   TextColor="Red" 
+                   IsVisible="False"
+                   Margin="0,0,0,10"/>
+
+            <!-- Payment Information Section -->
+            <Frame BorderColor="#EEEEEE" 
+                   CornerRadius="6" 
+                   Padding="15"
+                   Margin="0,0,0,15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="💳 Payment Information" 
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+
+                    <!-- Total Amount -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Total Amount"/>
+                        <Entry x:Name="TotalAmount" 
+                               Keyboard="Numeric"
+                               Placeholder="0.00"/>
+                        <Label x:Name="TotalAmountError" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+
+                    <!-- Currency -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Currency"/>
+                        <Picker x:Name="CurrencyCode" 
+                                Title="-- Select Currency --">
+                            <Picker.Items>
+                                <x:String>USD</x:String>
+                                <x:String>AWG</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label x:Name="CurrencyCodeError" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Card Details Section -->
+            <Frame BorderColor="#EEEEEE" 
+                   CornerRadius="6" 
+                   Padding="15"
+                   Margin="0,0,0,15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="🧾 Card Details" 
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+
+                    <!-- Card Number -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Card Number"/>
+                        <Entry x:Name="CardPan" 
+                               Keyboard="Numeric"
+                               Placeholder="1234 5678 9012 3456"
+                               MaxLength="19"/>
+                        <Label x:Name="CardPanError" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+
+                    <!-- Expiration and CVV Row -->
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- Expiration -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Expiration (MM/YY)"/>
+                            <Entry x:Name="CardExpiration" 
+                                   Placeholder="MM/YY"
+                                   MaxLength="5"/>
+                            <Label x:Name="CardExpirationError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- CVV -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="CVV"/>
+                            <Entry x:Name="CardCvv" 
+                                   Keyboard="Numeric"
+                                   Placeholder="123"
+                                   MaxLength="4"/>
+                            <Label x:Name="CardCvvError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Cardholder Name -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Cardholder Name"/>
+                        <Entry x:Name="CardholderName" 
+                               Placeholder="John Doe"/>
+                        <Label x:Name="CardholderNameError" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Billing Address Section -->
+            <Frame BorderColor="#EEEEEE" 
+                   CornerRadius="6" 
+                   Padding="15"
+                   Margin="0,0,0,15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="🏠 Billing Address" 
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+
+                    <!-- First and Last Name Row -->
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- First Name -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="First Name"/>
+                            <Entry x:Name="FirstName"/>
+                            <Label x:Name="FirstNameError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- Last Name -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Last Name"/>
+                            <Entry x:Name="LastName"/>
+                            <Label x:Name="LastNameError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Address Line 1 -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Address Line 1"/>
+                        <Entry x:Name="AddressLine1"/>
+                        <Label x:Name="AddressLine1Error" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+
+                    <!-- Address Line 2 -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Address Line 2 (Optional)"/>
+                        <Entry x:Name="AddressLine2"/>
+                        <Label x:Name="AddressLine2Error" 
+                               TextColor="Red" 
+                               FontSize="Small"
+                               IsVisible="False"/>
+                    </VerticalStackLayout>
+
+                    <!-- City, State, Postal Code Row -->
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- City -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="City"/>
+                            <Entry x:Name="City"/>
+                            <Label x:Name="CityError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- State -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="State"/>
+                            <Entry x:Name="State"/>
+                            <Label x:Name="StateError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- Postal Code -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Postal Code"/>
+                            <Entry x:Name="PostalCode"/>
+                            <Label x:Name="PostalCodeError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Country, Email, Phone Row -->
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- Country -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Country"/>
+                            <Picker x:Name="CountryCode" 
+                                    Title="-- Select Country --">
+                                <Picker.Items>
+                                    <x:String>EE.UU</x:String>
+                                    <x:String>ARUBA</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Label x:Name="CountryCodeError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- Email -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Email"/>
+                            <Entry x:Name="EmailAddress" 
+                                   Keyboard="Email"
+                                   Placeholder="email@example.com"/>
+                            <Label x:Name="EmailAddressError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+
+                        <!-- Phone -->
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="FillAndExpand">
+                            <Label Text="Phone"/>
+                            <Entry x:Name="PhoneNumber" 
+                                   Keyboard="Telephone"/>
+                            <Label x:Name="PhoneNumberError" 
+                                   TextColor="Red" 
+                                   FontSize="Small"
+                                   IsVisible="False"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Submit Button -->
+            <Button x:Name="SubmitButton"
+                    Text="💰 Submit Payment"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="4"
+                    Padding="15,10"
+                    Clicked="OnSubmitClicked"/>
+
+            <!-- Status Container (Hidden by default) -->
+            <VerticalStackLayout x:Name="StatusContainer" 
+                                 IsVisible="False"
+                                 Padding="20"
+                                 HorizontalOptions="Center">
+                <ActivityIndicator x:Name="StatusSpinner" 
+                                 IsRunning="True"
+                                 IsVisible="False"
+                                 Color="#3498db"
+                                 WidthRequest="40"
+                                 HeightRequest="40"/>
+                <Label x:Name="StatusMessage" 
+                       FontSize="Medium"
+                       HorizontalOptions="Center"/>
+                <Button x:Name="StatusButton"
+                       Text="OK"
+                       BackgroundColor="#2196F3"
+                       TextColor="White"
+                       CornerRadius="4"
+                       Margin="0,10,0,0"
+                       IsVisible="False"
+                       Clicked="OnStatusButtonClicked"/>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

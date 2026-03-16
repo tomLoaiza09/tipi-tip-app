@@ -7,6 +7,9 @@
     xmlns:views="clr-namespace:tipitipapp.Views"
     Title="tipitipapp">
 
+    <ShellContent Title="ManualEntry" 
+                  ContentTemplate="{DataTemplate views:ManualData}" 
+                  Route="ManualEntry"/>
     <ShellContent Title="Login" 
                   ContentTemplate="{DataTemplate views:LoginPage}" 
                   Route="SignIn"/>

@@ -31,8 +31,9 @@ namespace tipitipapp.Extention
             services.AddTransient<RegisterViewModel>();
 
             // Register Views
-            services.AddTransient<LoginPage>();
-            services.AddTransient<RegisterPage>();
+            services.AddTransient<tipitipapp.Views.LoginPage>();
+            services.AddTransient<tipitipapp.Views.RegisterPage>();
+            services.AddTransient<tipitipapp.Views.ManualData>();
             services.AddTransient<MainPage>();
 
             // Register Shell
